@@ -18,21 +18,23 @@ agent can't see your own files.
 Tested with Hermes Agent v0.23.1. Hermes releases often; if a command behaves
 differently, check `<command> --help`.
 
-## Who it is for
+## What you need
 
-Anyone comfortable with a terminal. You don't need to know Hermes or Python:
-every step uses a provided script or prompt.
+You should be comfortable with a terminal. You don't need to know Hermes or
+Python, and neither gets installed on your machine.
 
-You do need Docker, because there is no install-on-your-laptop option:
+- **Docker**, with at least 4 GB of memory and 5 GB of free disk:
+  - Linux (x86_64 or arm64): Docker Engine, with your user allowed to run `docker`
+  - macOS (Apple Silicon or Intel): Docker Desktop, or Colima started with `colima start --memory 4`
+  - Windows: WSL 2 with Docker Desktop's WSL integration, or Docker Engine
+    inside WSL; run every command in the WSL terminal
+- **Bash, curl** and `sha256sum` or `shasum`
+- **HTTPS access** to `hermes-agent.nousresearch.com`, `github.com`, Docker Hub,
+  the Ubuntu package mirrors and your model provider (`openrouter.ai` by default)
+- **An API key** with a small credit limit (see below)
 
-- Linux (x86_64 or arm64): Docker Engine, with your user allowed to run `docker`.
-- macOS (Apple Silicon or Intel): Docker Desktop or Colima.
-- Windows: WSL 2 with Docker Desktop's WSL integration, or Docker Engine
-  inside WSL. Run every command in the WSL terminal.
-
-If your organisation restricts Docker Desktop (licensing, admin rights), sort
-out an allowed runtime or another machine before the day. The prerequisite
-check below fails without a working Docker.
+If your organisation restricts Docker Desktop, arrange another runtime or
+machine before the day.
 
 ## Before the workshop
 
@@ -59,11 +61,6 @@ it on screen.
 Already have an Anthropic or OpenAI API account? You can use that key instead.
 Set a spending limit in that provider's console, and choose a small, low-cost
 model when you set up Hermes (see the quick reference below).
-
-On your machine you need Bash, curl, `sha256sum` or `shasum`, Docker with at
-least 4 GB of memory, about 5 GB of free disk, and HTTPS access to
-`hermes-agent.nousresearch.com`, `github.com`, Docker Hub, the Ubuntu package
-mirrors and `openrouter.ai`. You don't need Python or Hermes on your machine.
 
 ## Quick reference
 

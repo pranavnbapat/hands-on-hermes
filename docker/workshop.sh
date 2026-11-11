@@ -33,9 +33,17 @@ CONTAINER="${HERMES_WS_CONTAINER:-hermes-workshop}"
 VOLUME="${HERMES_WS_VOLUME:-hermes-workshop-home}"
 HOME_IN="/home/participant"
 REPO_IN="$HOME_IN/hermes-workshop"
-# Copies the read-only mount into the container; leaves the lab and .downloads alone.
+# Copies the read-only mount into the container, but only what the repository publishes:
+# the files git tracks or .gitignore allows. Without git metadata (an unzipped archive)
+# it copies everything. The lab is left alone.
 # shellcheck disable=SC2016  # $HOME must expand inside the container, not here
-SYNC_SCRIPT='mkdir -p "$HOME/hermes-workshop" && cp -R /workshop/. "$HOME/hermes-workshop/"'
+SYNC_SCRIPT='mkdir -p "$HOME/hermes-workshop" &&
+if git -c safe.directory=/workshop -C /workshop rev-parse --git-dir >/dev/null 2>&1; then
+  git -c safe.directory=/workshop -C /workshop ls-files -z --cached --others --exclude-standard |
+    tar -C /workshop --null --ignore-failed-read -T - -cf - | tar -C "$HOME/hermes-workshop" -xf -
+else
+  cp -R /workshop/. "$HOME/hermes-workshop/"
+fi'
 
 say()   { printf '==> %s\n' "$*"; }
 die()   { printf 'ERROR: %s\n' "$1" >&2; exit "${2:-1}"; }
