@@ -1,4 +1,4 @@
-# Hermes Agent: a two-hour hands-on workshop
+# Hands-on Hermes Agent
 
 Install, configure and run your own AI agent with
 [Hermes Agent](https://github.com/NousResearch/hermes-agent) from Nous Research,
@@ -11,7 +11,7 @@ By the end, your agent will have:
 - reused the same procedure as a skill on a second dataset;
 - run as a scheduled job.
 
-Hermes runs only in a Docker container in this workshop. Apart from this
+Here Hermes runs only in a Docker container. Apart from this
 repository and the Docker image, nothing gets installed on your laptop, and the
 agent can't see your own files.
 
@@ -34,12 +34,12 @@ Python, and neither gets installed on your machine.
 - **An API key** with a small credit limit (see below)
 
 If your organisation restricts Docker Desktop, arrange another runtime or
-machine before the day.
+machine first.
 
-## Before the workshop
+## Setup
 
-Please do this at home rather than on conference Wi-Fi: the build downloads
-several hundred megabytes, and the finished image is about 2.7 GB.
+Use a good connection: the build downloads several hundred megabytes, and the
+finished image is about 2.7 GB.
 
 ```bash
 git clone <this repository> hermes-workshop && cd hermes-workshop   # or unzip the archive
@@ -54,8 +54,8 @@ exit
 ```
 
 Then create an account at <https://openrouter.ai> and an API key with a small
-credit limit (a few US dollars). You'll set it up inside the container during
-the workshop. Keep it to yourself: don't commit it, paste it into chat or show
+credit limit (a few US dollars). You'll add it inside the container later.
+Keep it to yourself: don't commit it, paste it into chat or show
 it on screen.
 
 Already have an Anthropic or OpenAI API account? You can use that key instead.
@@ -70,7 +70,7 @@ On your machine:
 bash docker/workshop.sh start     # terminal 1: a shell inside the container (participant@hermes-lab)
 bash docker/workshop.sh shell     # terminal 2: another shell in the same container
 bash docker/workshop.sh stop      # stop it; everything is kept
-bash docker/workshop.sh reset     # delete the container and its data (after the workshop)
+bash docker/workshop.sh reset     # delete the container and its data (when you're done)
 ```
 
 Inside the container (it opens in `~/hermes-workshop`, a copy of this repository):
@@ -124,17 +124,17 @@ use anywhere else. Ctrl+C stops the dashboard.
 
 ## Safety rules
 
-1. Run Hermes only inside the workshop container, and start it in
+1. Run Hermes only inside the container, and start it in
    `~/hermes-workshop-lab`. The `AGENTS.md` in that folder keeps the agent in
    scope, but it's only an instruction. The container is the real boundary.
-2. Use the fictional workshop data only.
+2. Use the fictional sample data only.
 3. Use your own API key with a credit limit, and revoke it afterwards.
 4. Read approval prompts before answering, and don't use `--yolo`.
 5. When you're done, remove everything (see [Removing everything](#removing-everything)).
 
 ## Removing everything
 
-After the workshop, or to start again from scratch, run this in the repository:
+When you're done, or to start again from scratch, run this in the repository:
 
 ```bash
 bash docker/workshop.sh reset --yes   # the container and its volume: Hermes, API key, sessions, lab
@@ -153,7 +153,7 @@ docker images 'hermes-workshop*'
 Then revoke your API key in your provider's dashboard. Nothing else needs
 cleaning: Hermes was never installed on your machine.
 
-To start again, repeat the steps in "Before the workshop", but build with
+To start again, repeat the steps in "Setup", but build with
 `bash docker/workshop.sh build --refresh`. Docker's build cache outlives the
 image, and without `--refresh` the build restores the old Hermes install from
 it. That cache can also hold a few GB; `docker builder prune` frees it, but it
