@@ -148,10 +148,24 @@ EOF
   if ! have docker; then
     fail "Docker is not installed, and this workshop requires it"
     case "$platform" in
-      macos) fix "install Docker Desktop: https://docs.docker.com/desktop/setup/install/mac-install/" \
-                 "or Colima, which is free (needs Homebrew, https://brew.sh):" \
-                 "  brew install colima docker" \
-                 "  colima start --memory $MIN_DOCKER_MEM_GB" ;;
+      macos)
+        local dmg_arch=amd64 steps=()
+        [ "$ARCH" = arm64 ] && dmg_arch=arm64
+        steps=("install one of these two, then run this script again."
+               "A. Docker Desktop, an app (macOS 14 or newer). Free for personal use, education and"
+               "   small companies; above 250 employees or \$10M revenue it needs a paid plan."
+               "   1. Download https://desktop.docker.com/mac/main/$dmg_arch/Docker.dmg and open it"
+               "   2. Drag Docker to Applications, then open Docker from Applications"
+               "   3. Accept the terms and wait until Docker Desktop says the engine is running")
+        if have brew; then
+          steps+=("   (or instead of 1 and 2: brew install --cask docker-desktop)")
+        fi
+        steps+=("B. Colima, free and command-line only. It needs Homebrew$(have brew || printf ' (https://brew.sh)'):"
+                "   brew install colima docker"
+                "   colima start --memory $MIN_DOCKER_MEM_GB"
+                "   Run colima start again after every restart. The image build then warns that"
+                "   the legacy builder is deprecated; that's expected.")
+        fix "${steps[@]}" ;;
       wsl2)  fix "install Docker Desktop on Windows and turn on its WSL integration for this distribution:" \
                  "https://docs.docker.com/desktop/features/wsl/" \
                  "(or install Docker Engine inside WSL: https://docs.docker.com/engine/install/)" ;;
@@ -167,7 +181,8 @@ EOF
     else
       fail "Docker is installed but not running"
       case "$platform" in
-        macos) fix "open Docker Desktop, or with Colima: colima start --memory $MIN_DOCKER_MEM_GB" ;;
+        macos) fix "open Docker from Applications (or: open -a Docker) and wait until it says the engine" \
+                   "is running. With Colima instead: colima start --memory $MIN_DOCKER_MEM_GB" ;;
         wsl2)  fix "start Docker Desktop on Windows, and check that Settings > Resources > WSL integration" \
                    "is on for this distribution (Docker Engine inside WSL instead: sudo service docker start)" ;;
         *)     fix "sudo systemctl start docker   (start it at every boot: sudo systemctl enable docker)" ;;

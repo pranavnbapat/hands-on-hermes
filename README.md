@@ -25,7 +25,9 @@ Python, and neither gets installed on your machine.
 
 - **Docker**, with at least 4 GB of memory and 5 GB of free disk:
   - Linux (x86_64 or arm64): Docker Engine, with your user allowed to run `docker`
-  - macOS (Apple Silicon or Intel): Docker Desktop, or Colima started with `colima start --memory 4`
+  - macOS (Apple Silicon or Intel): Docker Desktop (macOS 14 or newer), or the free
+    Colima: `brew install colima docker`, then `colima start --memory 4`.
+    `scripts/01-check-prerequisites.sh` prints the steps for both
   - Windows: WSL 2 with Docker Desktop's WSL integration, or Docker Engine
     inside WSL; run every command in the WSL terminal
 - **Bash, curl** and `sha256sum` or `shasum`
