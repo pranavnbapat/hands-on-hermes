@@ -78,15 +78,19 @@ info "model.provider = ${provider:-<unset>}"
 info "model.default  = ${model:-<unset>}"
 [ -n "$base_url" ] && info "model.base_url = $base_url"
 if [ -z "$provider" ] || [ "$provider" = "auto" ]; then
-  warn "No provider chosen yet. Set it with 'hermes config set model.provider openrouter' before you start Hermes."
+  warn "No provider chosen yet. Set it with 'hermes config set model.provider openrouter' (or run 'hermes model' to use your own provider) before you start Hermes."
 else
   ok "Provider '$provider' with model '${model:-<provider default>}'"
 fi
 # A fresh install pre-fills a premium model; it stays in use until someone changes it.
 if [ -n "$model" ] && [ "$model" != "$WORKSHOP_DEFAULT_MODEL" ]; then
-  warn "The model is '$model', not the workshop's $WORKSHOP_DEFAULT_MODEL. Unless your facilitator chose it, it can cost far more per prompt."
-  info "Fix: hermes config set model.default $WORKSHOP_DEFAULT_MODEL"
-  info "then restart any Hermes session that is already running (/quit, then start it again)."
+  if [ "$provider" = "openrouter" ]; then
+    warn "The model is '$model', not the workshop's $WORKSHOP_DEFAULT_MODEL. Unless your facilitator chose it, it can cost far more per prompt."
+    info "Fix: hermes config set model.default $WORKSHOP_DEFAULT_MODEL"
+    info "then restart any Hermes session that is already running (/quit, then start it again)."
+  else
+    info "Your own provider ($provider): check that '$model' is a small, low-cost model. To change it, run: hermes model"
+  fi
 fi
 
 section "hermes doctor"

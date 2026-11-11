@@ -56,6 +56,10 @@ credit limit (a few US dollars). You'll set it up inside the container during
 the workshop. Keep it to yourself: don't commit it, paste it into chat or show
 it on screen.
 
+Already have an Anthropic or OpenAI API account? You can use that key instead.
+Set a spending limit in that provider's console, and choose a small, low-cost
+model when you set up Hermes (see the quick reference below).
+
 On your machine you need Bash, curl, `sha256sum` or `shasum`, Docker with at
 least 4 GB of memory, about 5 GB of free disk, and HTTPS access to
 `hermes-agent.nousresearch.com`, `github.com`, Docker Hub, the Ubuntu package
@@ -80,6 +84,8 @@ bash scripts/04.1-show-context-files.sh             # optional: SOUL.md, AGENTS.
 hermes config set OPENROUTER_API_KEY 'sk-or-v1-...'
 hermes config set model.provider openrouter
 hermes config set model.default anthropic/claude-haiku-5.5
+# or, with your own Anthropic or OpenAI key, instead of the three lines above:
+hermes model    # choose "Anthropic" or "OpenAI API", paste the key, pick a small model
 cd ~/hermes-workshop-lab && hermes --checkpoints    # always start Hermes inside the lab
 
 # terminal 2, inside the container:
