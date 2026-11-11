@@ -84,13 +84,16 @@ else
 fi
 # A fresh install pre-fills a premium model; it stays in use until someone changes it.
 if [ -n "$model" ] && [ "$model" != "$WORKSHOP_DEFAULT_MODEL" ]; then
-  if [ "$provider" = "openrouter" ]; then
-    warn "The model is '$model', not the workshop's $WORKSHOP_DEFAULT_MODEL. Unless your facilitator chose it, it can cost far more per prompt."
-    info "Fix: hermes config set model.default $WORKSHOP_DEFAULT_MODEL"
-    info "then restart any Hermes session that is already running (/quit, then start it again)."
-  else
-    info "Your own provider ($provider): check that '$model' is a small, low-cost model. To change it, run: hermes model"
-  fi
+  case "$provider" in
+    ""|auto|openrouter)
+      warn "The model is '$model', not the workshop's $WORKSHOP_DEFAULT_MODEL. Unless your facilitator chose it, it can cost far more per prompt."
+      info "Fix: hermes config set model.default $WORKSHOP_DEFAULT_MODEL"
+      info "then restart any Hermes session that is already running (/quit, then start it again)."
+      ;;
+    *)
+      info "Your own provider ($provider): check that '$model' is a small, low-cost model. To change it, run: hermes model"
+      ;;
+  esac
 fi
 
 section "hermes doctor"
