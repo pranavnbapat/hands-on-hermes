@@ -47,7 +47,7 @@ bash scripts/01-check-prerequisites.sh      # checks Docker, disk space and netw
 bash scripts/02-download-installer.sh       # downloads the official Hermes installer for review
 less .downloads/hermes-install.sh           # read it
 bash docker/workshop.sh build               # installs Hermes INSIDE the image, pinned to the file you read
-bash docker/workshop.sh start               # opens a shell inside the container
+bash docker/workshop.sh start --web         # opens a shell inside the container (--web: see "Hermes in your browser")
 # inside the container:
 bash scripts/03-verify-installation.sh
 exit
@@ -94,6 +94,29 @@ bash scripts/06-install-skill.sh                    # installs the csv-reporting
 
 If you run `03`, `04`, `06` or `07` on your own machine by mistake, they stop
 and tell you to open the container.
+
+## Hermes in your browser
+
+Hermes also has a web dashboard: a chat, plus pages for settings, API keys and
+sessions. It works when the container was started with `--web`, as in the
+steps above. Inside the container:
+
+```bash
+hermes dashboard --host 0.0.0.0 --skip-build --no-open
+```
+
+Then open <http://127.0.0.1:9119> on your machine. The first time, Hermes asks
+you to set up a login: choose "Username & password", with a password you don't
+use anywhere else. Ctrl+C stops the dashboard.
+
+- Container created without `--web`? Docker can't add the port later. Recreate
+  the container; the volume with Hermes, your key, sessions and lab is kept:
+  `docker rm -f hermes-workshop && bash docker/workshop.sh start --web`
+- Port 9119 already in use on your machine? Choose another one when you create
+  the container, e.g. `HERMES_WS_WEB_PORT=9200 bash docker/workshop.sh start --web`,
+  and open <http://127.0.0.1:9200>.
+- The port is published on 127.0.0.1 only, so nobody else on your network can
+  reach it.
 
 ## Safety rules
 

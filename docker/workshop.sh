@@ -10,7 +10,10 @@
 #                   Pinned to the SHA-256 of .downloads/hermes-install.sh if you
 #                   fetched it with scripts/02-download-installer.sh.
 #                   --unpinned skips the pin; --refresh ignores the build cache
-#   start           start or resume the container and open a shell in it
+#   start [--web]   start or resume the container and open a shell in it.
+#                   --web also publishes Hermes' web dashboard on 127.0.0.1:9119
+#                   (only on this machine); it takes effect when the container
+#                   is created
 #   shell           another shell in the running container
 #   run CMD...      run one command inside, e.g. run hermes --version
 #   sync            copy the repo in again after you edit it
@@ -23,6 +26,7 @@
 #
 # HERMES_WS_IMAGE, HERMES_WS_CONTAINER and HERMES_WS_VOLUME override the names
 # (the tests use them so they never touch your real container).
+# HERMES_WS_WEB_PORT picks another port on this machine for --web (default 9119).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -31,6 +35,8 @@ IMAGE="${HERMES_WS_IMAGE:-hermes-workshop:latest}"
 DEMO_IMAGE="${IMAGE%%:*}:prereqs"
 CONTAINER="${HERMES_WS_CONTAINER:-hermes-workshop}"
 VOLUME="${HERMES_WS_VOLUME:-hermes-workshop-home}"
+WEB_PORT="${HERMES_WS_WEB_PORT:-9119}"
+WEB=false
 HOME_IN="/home/participant"
 REPO_IN="$HOME_IN/hermes-workshop"
 # Copies the read-only mount into the container, but only what the repository publishes:
@@ -47,7 +53,7 @@ fi'
 
 say()   { printf '==> %s\n' "$*"; }
 die()   { printf 'ERROR: %s\n' "$1" >&2; exit "${2:-1}"; }
-usage() { sed -n '2,25p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { awk 'NR > 1 && !/^#/ { exit } NR > 1 { sub(/^# ?/, ""); print }' "$0"; }
 
 interactive() { [ -t 0 ] && [ -t 1 ]; }
 
@@ -141,9 +147,18 @@ ensure_running() {
     die "container $CONTAINER was created from an older image; recreate it: bash docker/workshop.sh reset, then start"
   fi
   if ! container_exists; then
-    local tz tz_flags=()
+    local tz tz_flags=() port_flags=()
     tz="$(host_tz || true)"
     [ -n "$tz" ] && tz_flags=(-e "TZ=$tz")
+    # Published on 127.0.0.1 only: reachable from this machine, not from the network.
+    if [ "$WEB" = true ]; then
+      # Something already answers there (often another project's container): stop before
+      # Docker leaves a half-created container behind.
+      if (exec 3<>"/dev/tcp/127.0.0.1/$WEB_PORT") 2>/dev/null; then
+        die "port $WEB_PORT is already in use on this machine; choose another, e.g.: HERMES_WS_WEB_PORT=9120 bash docker/workshop.sh start --web" 2
+      fi
+      port_flags=(-p "127.0.0.1:$WEB_PORT:9119")
+    fi
     say "Creating container $CONTAINER (volume $VOLUME, repository mounted read-only at /workshop)"
     docker run -d --name "$CONTAINER" --hostname hermes-lab \
       "${SECURITY_FLAGS[@]}" \
@@ -151,6 +166,7 @@ ensure_running() {
       -v "$ROOT:/workshop:ro" \
       --add-host=host.docker.internal:host-gateway \
       ${tz_flags[@]+"${tz_flags[@]}"} \
+      ${port_flags[@]+"${port_flags[@]}"} \
       "$IMAGE" sleep infinity >/dev/null
   elif ! running; then
     say "Resuming container $CONTAINER"
@@ -162,6 +178,11 @@ ensure_running() {
   fi
 }
 
+# The dashboard listens on 9119 inside; the port on this machine may differ (HERMES_WS_WEB_PORT).
+web_published() { docker port "$CONTAINER" 9119/tcp >/dev/null 2>&1; }
+web_url() { printf 'http://%s' "$(docker port "$CONTAINER" 9119/tcp 2>/dev/null | head -n 1)"; }
+DASHBOARD_CMD="hermes dashboard --host 0.0.0.0 --skip-build --no-open"
+
 banner() {
   cat <<EOF
 You are inside the workshop container ($CONTAINER). Your laptop's files are not visible here.
@@ -170,10 +191,28 @@ You are inside the workshop container ($CONTAINER). Your laptop's files are not 
   Start Hermes:     cd ~/hermes-workshop-lab && hermes --checkpoints
   Second terminal:  bash docker/workshop.sh shell      Leave: exit (the container keeps running)
 EOF
+  if web_published; then
+    cat <<EOF
+  Web dashboard:    $DASHBOARD_CMD
+                    then open $(web_url) (it asks you to set a login the first time)
+EOF
+  fi
 }
 
 cmd_start() {
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --web) WEB=true ;;
+      *) die "unknown option for start: $1 (expected --web)" 2 ;;
+    esac
+    shift
+  done
   ensure_running
+  if [ "$WEB" = true ] && ! web_published; then
+    say "This container was created without the web port, and Docker can't add one later."
+    say "To recreate it and keep the volume (Hermes, API key, sessions, lab), run on this machine:"
+    say "  docker rm -f $CONTAINER && bash docker/workshop.sh start --web"
+  fi
   if interactive; then
     banner
     exec_in bash -l
@@ -214,6 +253,9 @@ cmd_status() {
   if volume_exists; then say "Volume:    $VOLUME exists"; else say "Volume:    $VOLUME does not exist"; fi
   if running; then
     say "Hermes:    $(docker exec "$CONTAINER" hermes --version 2>/dev/null | head -n 1)"
+    if web_published; then
+      say "Web port:  $(web_url) (inside, start it with: $DASHBOARD_CMD)"
+    fi
     if docker exec "$CONTAINER" test -d "$HOME_IN/hermes-workshop-lab"; then
       say "Lab:       ~/hermes-workshop-lab exists"
     else
@@ -271,7 +313,7 @@ docker info >/dev/null 2>&1 || die "cannot reach the Docker daemon (is Docker ru
 command_name="$1"; shift
 case "$command_name" in
   build)        cmd_build "$@" ;;
-  start)        cmd_start ;;
+  start)        cmd_start "$@" ;;
   shell)        cmd_shell ;;
   run)          cmd_run "$@" ;;
   sync)         cmd_sync ;;
