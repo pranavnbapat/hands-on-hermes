@@ -106,7 +106,34 @@ and tell you to open the container.
 2. Use the fictional workshop data only.
 3. Use your own API key with a credit limit, and revoke it afterwards.
 4. Read approval prompts before answering, and don't use `--yolo`.
-5. When you're done, remove everything with `bash docker/workshop.sh reset`.
+5. When you're done, remove everything (see [Removing everything](#removing-everything)).
+
+## Removing everything
+
+After the workshop, or to start again from scratch, run this in the repository:
+
+```bash
+bash docker/workshop.sh reset --yes   # the container and its volume: Hermes, API key, sessions, lab
+docker rmi hermes-workshop:latest     # the image (add hermes-workshop:prereqs if you ran install-demo)
+rm -rf .downloads                     # the installer you reviewed
+```
+
+Each of these should then list nothing:
+
+```bash
+docker ps -a --filter name=hermes-workshop
+docker volume ls --filter name=hermes-workshop
+docker images 'hermes-workshop*'
+```
+
+Then revoke your API key in your provider's dashboard. Nothing else needs
+cleaning: Hermes was never installed on your machine.
+
+To start again, repeat the steps in "Before the workshop", but build with
+`bash docker/workshop.sh build --refresh`. Docker's build cache outlives the
+image, and without `--refresh` the build restores the old Hermes install from
+it. That cache can also hold a few GB; `docker builder prune` frees it, but it
+clears every project's build cache, not just this one.
 
 ## What's in this repository
 
