@@ -7,10 +7,12 @@
 #
 #   build [--installer-sha256 HASH] [--unpinned] [--refresh]
 #                   build the image (runs the official Hermes installer inside).
-#                   Pinned to the SHA-256 of .downloads/hermes-install.sh if you
-#                   fetched it with scripts/02-download-installer.sh.
-#                   --unpinned skips the pin; --refresh ignores the build cache
-#   start [--web]   start or resume the container and open a shell in it.
+#                   Pinned to the SHA-256 of .downloads/hermes-install.sh, the
+#                   copy scripts/02-download-installer.sh fetches for review;
+#                   without it the build stops. --unpinned skips the review and
+#                   the pin; --refresh ignores the build cache
+#   start [--web]   start or resume the container and open a shell in it
+#                   (builds the image first if needed, with the same rules).
 #                   --web also publishes Hermes' web dashboard on 127.0.0.1:9119
 #                   (only on this machine); it takes effect when the container
 #                   is created
@@ -114,8 +116,11 @@ cmd_build() {
       sha="$(sha256_file "$reviewed")"
       say "Pinning the installer you reviewed: $sha (.downloads/hermes-install.sh)"
     else
-      say "No reviewed installer found. To review it first: bash scripts/02-download-installer.sh"
-      say "Building with the current official installer, unpinned."
+      say "No reviewed installer in .downloads/, so there is nothing to pin the build to. First:"
+      say "  bash scripts/02-download-installer.sh"
+      say "  less .downloads/hermes-install.sh"
+      say "  bash docker/workshop.sh build"
+      die "stopped before running an installer nobody has read (to skip the review on purpose: build --unpinned)" 2
     fi
   fi
   [ -n "$sha" ] && extra+=(--build-arg "INSTALLER_SHA256=$sha")
@@ -141,7 +146,10 @@ has_marker() {   # has_marker image|container NAME
 }
 
 ensure_running() {
-  image_exists "$IMAGE" || cmd_build
+  if ! image_exists "$IMAGE"; then
+    say "The image $IMAGE isn't built yet."
+    cmd_build
+  fi
   has_marker image "$IMAGE" || die "image $IMAGE is from an older version of this workshop; rebuild it: bash docker/workshop.sh build"
   if container_exists && ! has_marker container "$CONTAINER"; then
     die "container $CONTAINER was created from an older image; recreate it: bash docker/workshop.sh reset, then start"
@@ -186,10 +194,11 @@ DASHBOARD_CMD="cd ~/hermes-workshop-lab && hermes dashboard --host 0.0.0.0 --ski
 banner() {
   cat <<EOF
 You are inside the workshop container ($CONTAINER). Your laptop's files are not visible here.
-  Repository copy:  $REPO_IN     (refresh with: bash docker/workshop.sh sync)
+  Repository copy:  $REPO_IN     (refresh from your laptop: bash docker/workshop.sh sync)
   First time:       bash scripts/03-verify-installation.sh && bash scripts/04-create-workspace.sh
   Start Hermes:     cd ~/hermes-workshop-lab && hermes --checkpoints
-  Second terminal:  bash docker/workshop.sh shell      Leave: exit (the container keeps running)
+  Second terminal:  on your laptop, bash docker/workshop.sh shell
+  Leave:            exit (the container keeps running)
 EOF
   if web_published; then
     cat <<EOF
@@ -209,9 +218,11 @@ cmd_start() {
   done
   ensure_running
   if [ "$WEB" = true ] && ! web_published; then
+    local port_env=""
+    if [ "$WEB_PORT" != 9119 ]; then port_env="HERMES_WS_WEB_PORT=$WEB_PORT "; fi
     say "This container was created without the web port, and Docker can't add one later."
-    say "To recreate it and keep the volume (Hermes, API key, sessions, lab), run on this machine:"
-    say "  docker rm -f $CONTAINER && bash docker/workshop.sh start --web"
+    say "To recreate it and keep the volume (Hermes, API key, sessions, lab), type exit, then on this machine:"
+    say "  docker rm -f $CONTAINER && ${port_env}bash docker/workshop.sh start --web"
   fi
   if interactive; then
     banner
@@ -305,9 +316,12 @@ EOF
     "${SECURITY_FLAGS[@]}" -v "$ROOT:/workshop:ro" "$DEMO_IMAGE" bash -lc "$inner"
 }
 
-command -v docker >/dev/null 2>&1 || die "Docker is not installed or not on PATH"
 [ $# -gt 0 ] || { usage; exit 2; }
 case "$1" in -h|--help|help) usage; exit 0 ;; esac
+if [ "${HERMES_WORKSHOP_CONTAINER:-}" = 1 ]; then
+  die "you are inside the workshop container; workshop.sh runs on your laptop. Type exit, then run it there." 3
+fi
+command -v docker >/dev/null 2>&1 || die "Docker is not installed or not on PATH"
 docker info >/dev/null 2>&1 || die "cannot reach the Docker daemon (is Docker running, and may your user use it?)"
 
 command_name="$1"; shift
