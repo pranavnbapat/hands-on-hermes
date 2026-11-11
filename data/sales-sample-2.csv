@@ -1,0 +1,81 @@
+transaction_id,date,product,category,quantity,unit_price,total_revenue
+TX-2611-0001,2026-11-01,A5 Notebook,Stationery,16,6.75,108.00
+TX-2611-0002,2026-11-01,A5 Notebook,Stationery,18,6.75,121.50
+TX-2611-0003,2026-11-01,USB-C Cable,Electronics,8,8.49,67.92
+TX-2611-0004,2026-11-01,Webcam HD,Electronics,5,59.00,295.00
+TX-2611-0005,2026-11-01,Wireless Mouse,Peripherals,4,24.95,99.80
+TX-2611-0006,2026-11-01,Wireless Mouse,Peripherals,3,24.95,74.85
+TX-2611-0007,2026-11-02,Desk Lamp,Furniture,1,34.50,34.50
+TX-2611-0008,2026-11-02,Noise-Cancelling Headset,Electronics,3,89.00,267.00
+TX-2611-0009,2026-11-02,Webcam HD,Electronics,2,59.00,118.00
+TX-2611-0010,2026-11-03,Desk Lamp,Furniture,2,34.50,69.00
+TX-2611-0011,2026-11-03,Desk Lamp,Furniture,2,34.50,69.00
+TX-2611-0012,2026-11-03,USB-C Cable,Electronics,9,8.49,76.41
+TX-2611-0013,2026-11-03,Webcam HD,Electronics,2,59.00,118.00
+TX-2611-0014,2026-11-04,Noise-Cancelling Headset,Electronics,2,89.00,178.00
+TX-2611-0015,2026-11-05,Gel Pen Pack,Stationery,11,4.20,46.20
+TX-2611-0016,2026-11-05,Gel Pen Pack,Stationery,7,4.20,29.40
+TX-2611-0017,2026-11-05,Monitor 27in,Electronics,3,189.00,567.00
+TX-2611-0018,2026-11-05,Webcam HD,Electronics,4,59.00,236.00
+TX-2611-0019,2026-11-05,Wireless Mouse,Peripherals,4,24.95,99.80
+TX-2611-0020,2026-11-06,Noise-Cancelling Headset,Electronics,3,89.00,267.00
+TX-2611-0021,2026-11-07,A5 Notebook,Stationery,16,6.75,108.00
+TX-2611-0022,2026-11-07,Desk Lamp,Furniture,2,34.50,69.00
+TX-2611-0023,2026-11-07,Ergonomic Chair,Furniture,1,229.00,229.00
+TX-2611-0024,2026-11-07,Gel Pen Pack,Stationery,19,4.20,79.80
+TX-2611-0025,2026-11-08,A5 Notebook,Stationery,19,6.75,128.25
+TX-2611-0026,2026-11-08,Ergonomic Chair,Furniture,1,229.00,229.00
+TX-2611-0027,2026-11-08,Gel Pen Pack,Stationery,13,4.20,54.60
+TX-2611-0028,2026-11-08,Noise-Cancelling Headset,Electronics,3,89.00,267.00
+TX-2611-0029,2026-11-09,Monitor 27in,Electronics,1,189.00,189.00
+TX-2611-0030,2026-11-09,USB-C Cable,Electronics,5,8.49,42.45
+TX-2611-0031,2026-11-09,Webcam HD,Electronics,2,59.00,118.00
+TX-2611-0032,2026-11-09,Wireless Keyboard,Peripherals,4,49.90,199.60
+TX-2611-0033,2026-11-10,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2611-0034,2026-11-10,Monitor 27in,Electronics,3,189.00,567.00
+TX-2611-0035,2026-11-10,Noise-Cancelling Headset,Electronics,1,89.00,89.00
+TX-2611-0036,2026-11-10,Webcam HD,Electronics,4,59.00,236.00
+TX-2611-0037,2026-11-11,A5 Notebook,Stationery,20,6.75,135.00
+TX-2611-0038,2026-11-11,Desk Lamp,Furniture,2,34.50,69.00
+TX-2611-0039,2026-11-11,Noise-Cancelling Headset,Electronics,3,89.00,267.00
+TX-2611-0040,2026-11-11,Wireless Keyboard,Peripherals,2,49.90,99.80
+TX-2611-0041,2026-11-13,A5 Notebook,Stationery,19,6.75,128.25
+TX-2611-0042,2026-11-13,Gel Pen Pack,Stationery,12,4.20,50.40
+TX-2611-0043,2026-11-14,USB-C Cable,Electronics,14,8.49,118.86
+TX-2611-0044,2026-11-14,USB-C Cable,Electronics,15,8.49,127.35
+TX-2611-0045,2026-11-14,USB-C Cable,Electronics,8,8.49,67.92
+TX-2611-0046,2026-11-14,Wireless Mouse,Peripherals,1,24.95,24.95
+TX-2611-0047,2026-11-16,A5 Notebook,Stationery,2,6.75,13.50
+TX-2611-0048,2026-11-16,Monitor 27in,Electronics,3,189.00,567.00
+TX-2611-0049,2026-11-16,Webcam HD,Electronics,3,59.00,177.00
+TX-2611-0050,2026-11-17,Gel Pen Pack,Stationery,5,4.20,21.00
+TX-2611-0051,2026-11-17,USB-C Cable,Electronics,9,8.49,76.41
+TX-2611-0052,2026-11-18,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2611-0053,2026-11-18,Wireless Mouse,Peripherals,5,24.95,124.75
+TX-2611-0054,2026-11-19,A5 Notebook,Stationery,4,6.75,27.00
+TX-2611-0055,2026-11-20,USB-C Cable,Electronics,3,8.49,25.47
+TX-2611-0056,2026-11-21,A5 Notebook,Stationery,16,6.75,108.00
+TX-2611-0057,2026-11-21,Desk Lamp,Furniture,3,34.50,103.50
+TX-2611-0058,2026-11-21,Noise-Cancelling Headset,Electronics,4,89.00,356.00
+TX-2611-0059,2026-11-21,Webcam HD,Electronics,5,59.00,295.00
+TX-2611-0060,2026-11-22,Gel Pen Pack,Stationery,25,4.20,105.00
+TX-2611-0061,2026-11-22,Wireless Mouse,Peripherals,5,24.95,124.75
+TX-2611-0062,2026-11-23,USB-C Cable,Electronics,11,8.49,93.39
+TX-2611-0063,2026-11-23,Wireless Mouse,Peripherals,3,24.95,74.85
+TX-2611-0064,2026-11-23,Wireless Mouse,Peripherals,3,24.95,74.85
+TX-2611-0065,2026-11-25,Gel Pen Pack,Stationery,15,4.20,63.00
+TX-2611-0066,2026-11-25,USB-C Cable,Electronics,14,8.49,118.86
+TX-2611-0067,2026-11-25,USB-C Cable,Electronics,4,8.49,33.96
+TX-2611-0068,2026-11-26,Gel Pen Pack,Stationery,21,4.20,88.20
+TX-2611-0069,2026-11-27,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2611-0070,2026-11-27,Ergonomic Chair,Furniture,1,229.00,229.00
+TX-2611-0071,2026-11-27,Webcam HD,Electronics,5,59.00,295.00
+TX-2611-0072,2026-11-27,Webcam HD,Electronics,2,59.00,118.00
+TX-2611-0073,2026-11-28,Monitor 27in,Electronics,1,189.00,189.00
+TX-2611-0074,2026-11-28,USB-C Cable,Electronics,16,8.49,135.84
+TX-2611-0075,2026-11-28,Webcam HD,Electronics,3,59.00,177.00
+TX-2611-0076,2026-11-29,USB-C Cable,Electronics,2,8.49,16.98
+TX-2611-0077,2026-11-29,Webcam HD,Electronics,3,59.00,177.00
+TX-2611-0078,2026-11-30,A5 Notebook,Stationery,13,6.75,87.75
+TX-2611-0079,2026-11-30,Desk Lamp,Furniture,1,34.50,34.50
+TX-2611-0080,2026-11-30,Webcam HD,Electronics,3,59.00,177.00

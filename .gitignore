@@ -1,0 +1,37 @@
+# Downloaded installer
+.downloads/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+auth.json
+
+# Python and editor noise
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+.DS_Store
+*.log
+
+# Local tooling
+.superdesign/
+.claude/
+
+*.md
+!/README.md
+!/lab-template/AGENTS.md
+!/skills/csv-reporting/SKILL.md
+!/skills/csv-reporting/templates/report-template.md
+
+/docs/
+/exercises/
+/expected-output/
+/slides/
+/tests/
+/scripts/validate-workshop.sh
+/scripts/dev/
+/.shellcheckrc
+/data/extras/

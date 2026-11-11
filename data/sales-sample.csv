@@ -1,0 +1,101 @@
+transaction_id,date,product,category,quantity,unit_price,total_revenue
+TX-2610-0001,2026-10-02,A5 Notebook,Stationery,10,6.75,67.50
+TX-2610-0002,2026-10-02,USB-C Cable,Electronics,3,8.49,25.47
+TX-2610-0003,2026-10-03,Desk Lamp,Furniture,1,34.50,34.50
+TX-2610-0004,2026-10-03,Wireless Keyboard,Peripherals,3,49.90,149.70
+TX-2610-0005,2026-10-04,A5 Notebook,Stationery,23,6.75,155.25
+TX-2610-0006,2026-10-04,A5 Notebook,Stationery,20,6.75,135.00
+TX-2610-0007,2026-10-04,A5 Notebook,Stationery,24,6.75,162.00
+TX-2610-0008,2026-10-04,Gel Pen Pack,Stationery,21,4.20,88.20
+TX-2610-0009,2026-10-04,Monitor 27in,Electronics,1,189.00,189.00
+TX-2610-0010,2026-10-04,Sticky Notes,Stationery,12,3.15,37.80
+TX-2610-0011,2026-10-04,Wireless Mouse,Peripherals,2,24.95,49.90
+TX-2610-0012,2026-10-05,Desk Lamp,Furniture,3,34.50,103.50
+TX-2610-0013,2026-10-05,Desk Lamp,Furniture,1,34.50,34.50
+TX-2610-0014,2026-10-05,USB-C Cable,Electronics,10,8.49,84.90
+TX-2610-0015,2026-10-06,Sticky Notes,Stationery,4,3.15,12.60
+TX-2610-0016,2026-10-06,Wireless Keyboard,Peripherals,3,49.90,149.70
+TX-2610-0017,2026-10-07,A5 Notebook,Stationery,22,6.75,148.50
+TX-2610-0018,2026-10-07,Ergonomic Chair,Furniture,1,229.00,229.00
+TX-2610-0019,2026-10-07,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2610-0020,2026-10-07,Wireless Mouse,Peripherals,3,24.95,74.85
+TX-2610-0021,2026-10-08,A5 Notebook,Stationery,3,6.75,20.25
+TX-2610-0022,2026-10-08,A5 Notebook,Stationery,23,6.75,155.25
+TX-2610-0023,2026-10-09,Desk Lamp,Furniture,4,34.50,138.00
+TX-2610-0024,2026-10-09,Ergonomic Chair,Furniture,3,229.00,687.00
+TX-2610-0025,2026-10-09,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2610-0026,2026-10-10,Monitor 27in,Electronics,3,189.00,567.00
+TX-2610-0027,2026-10-10,USB-C Cable,Electronics,4,8.49,33.96
+TX-2610-0028,2026-10-10,USB-C Cable,Electronics,17,8.49,144.33
+TX-2610-0029,2026-10-10,Wireless Keyboard,Peripherals,2,49.90,99.80
+TX-2610-0030,2026-10-11,Gel Pen Pack,Stationery,24,4.20,100.80
+TX-2610-0031,2026-10-11,USB-C Cable,Electronics,8,8.49,67.92
+TX-2610-0032,2026-10-11,Wireless Keyboard,Peripherals,4,49.90,199.60
+TX-2610-0033,2026-10-11,Wireless Mouse,Peripherals,4,24.95,99.80
+TX-2610-0034,2026-10-12,Monitor 27in,Electronics,2,189.00,378.00
+TX-2610-0035,2026-10-13,Gel Pen Pack,Stationery,28,4.20,117.60
+TX-2610-0036,2026-10-13,Monitor 27in,Electronics,2,189.00,378.00
+TX-2610-0037,2026-10-14,A5 Notebook,Stationery,12,6.75,81.00
+TX-2610-0038,2026-10-14,Gel Pen Pack,Stationery,6,4.20,25.20
+TX-2610-0039,2026-10-14,USB-C Cable,Electronics,2,8.49,16.98
+TX-2610-0040,2026-10-14,USB-C Cable,Electronics,16,8.49,135.84
+TX-2610-0041,2026-10-14,Wireless Mouse,Peripherals,3,24.95,74.85
+TX-2610-0042,2026-10-15,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2610-0043,2026-10-15,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2610-0044,2026-10-15,Gel Pen Pack,Stationery,27,4.20,113.40
+TX-2610-0045,2026-10-15,Gel Pen Pack,Stationery,15,4.20,63.00
+TX-2610-0046,2026-10-16,A5 Notebook,Stationery,19,6.75,128.25
+TX-2610-0047,2026-10-16,Gel Pen Pack,Stationery,17,4.20,71.40
+TX-2610-0048,2026-10-16,USB-C Cable,Electronics,16,8.49,135.84
+TX-2610-0049,2026-10-16,Webcam HD,Electronics,3,64.00,192.00
+TX-2610-0050,2026-10-17,Ergonomic Chair,Furniture,2,229.00,458.00
+TX-2610-0051,2026-10-17,Sticky Notes,Stationery,30,3.15,94.50
+TX-2610-0052,2026-10-18,Wireless Keyboard,Peripherals,1,49.90,49.90
+TX-2610-0053,2026-10-19,A5 Notebook,Stationery,6,6.75,40.50
+TX-2610-0054,2026-10-19,A5 Notebook,Stationery,19,6.75,128.25
+TX-2610-0055,2026-10-19,Ergonomic Chair,Furniture,1,229.00,229.00
+TX-2610-0056,2026-10-19,Gel Pen Pack,Stationery,23,4.20,96.60
+TX-2610-0057,2026-10-19,Gel Pen Pack,Stationery,15,4.20,63.00
+TX-2610-0058,2026-10-19,Sticky Notes,Stationery,4,3.15,12.60
+TX-2610-0059,2026-10-20,USB-C Cable,Electronics,20,8.49,169.80
+TX-2610-0060,2026-10-21,Desk Lamp,Furniture,1,34.50,34.50
+TX-2610-0061,2026-10-21,Gel Pen Pack,Stationery,8,4.20,33.60
+TX-2610-0062,2026-10-21,Monitor 27in,Electronics,3,189.00,567.00
+TX-2610-0063,2026-10-21,Wireless Keyboard,Peripherals,3,49.90,149.70
+TX-2610-0064,2026-10-22,A5 Notebook,Stationery,13,6.75,87.75
+TX-2610-0065,2026-10-22,A5 Notebook,Stationery,14,6.75,94.50
+TX-2610-0066,2026-10-22,Sticky Notes,Stationery,29,3.15,91.35
+TX-2610-0067,2026-10-22,USB-C Cable,Electronics,12,8.49,101.88
+TX-2610-0068,2026-10-22,USB-C Cable,Electronics,10,8.49,84.90
+TX-2610-0069,2026-10-23,Desk Lamp,Furniture,2,34.50,69.00
+TX-2610-0070,2026-10-23,Wireless Keyboard,Peripherals,3,49.90,149.70
+TX-2610-0071,2026-10-23,Wireless Keyboard,Peripherals,2,49.90,99.80
+TX-2610-0072,2026-10-23,Wireless Mouse,Peripherals,5,24.95,124.75
+TX-2610-0073,2026-10-24,Ergonomic Chair,Furniture,3,229.00,687.00
+TX-2610-0074,2026-10-24,Monitor 27in,Electronics,1,189.00,189.00
+TX-2610-0075,2026-10-24,USB-C Cable,Electronics,4,8.49,33.96
+TX-2610-0076,2026-10-24,Webcam HD,Electronics,4,64.00,256.00
+TX-2610-0077,2026-10-25,Gel Pen Pack,Stationery,26,4.20,109.20
+TX-2610-0078,2026-10-25,Gel Pen Pack,Stationery,35,4.20,147.00
+TX-2610-0079,2026-10-25,Gel Pen Pack,Stationery,31,4.20,130.20
+TX-2610-0080,2026-10-25,Wireless Keyboard,Peripherals,3,49.90,149.70
+TX-2610-0081,2026-10-26,Desk Lamp,Furniture,2,34.50,69.00
+TX-2610-0082,2026-10-26,Gel Pen Pack,Stationery,15,4.20,63.00
+TX-2610-0083,2026-10-26,USB-C Cable,Electronics,11,8.49,93.39
+TX-2610-0084,2026-10-27,Ergonomic Chair,Furniture,1,229.00,229.00
+TX-2610-0085,2026-10-27,Wireless Keyboard,Peripherals,1,49.90,49.90
+TX-2610-0086,2026-10-27,Wireless Keyboard,Peripherals,2,49.90,99.80
+TX-2610-0087,2026-10-28,Desk Lamp,Furniture,1,34.50,34.50
+TX-2610-0088,2026-10-28,Desk Lamp,Furniture,1,34.50,34.50
+TX-2610-0089,2026-10-28,Sticky Notes,Stationery,10,3.15,31.50
+TX-2610-0090,2026-10-28,USB-C Cable,Electronics,5,8.49,42.45
+TX-2610-0091,2026-10-29,A5 Notebook,Stationery,8,6.75,54.00
+TX-2610-0092,2026-10-29,Monitor 27in,Electronics,1,189.00,189.00
+TX-2610-0093,2026-10-29,USB-C Cable,Electronics,10,8.49,84.90
+TX-2610-0094,2026-10-29,Webcam HD,Electronics,4,64.00,256.00
+TX-2610-0095,2026-10-29,Webcam HD,Electronics,4,64.00,256.00
+TX-2610-0096,2026-10-29,Wireless Keyboard,Peripherals,4,49.90,199.60
+TX-2610-0097,2026-10-30,Sticky Notes,Stationery,29,3.15,91.35
+TX-2610-0098,2026-10-30,Wireless Mouse,Peripherals,3,24.95,74.85
+TX-2610-0099,2026-10-31,A5 Notebook,Stationery,16,6.75,108.00
+TX-2610-0100,2026-10-31,Ergonomic Chair,Furniture,1,229.00,229.00
