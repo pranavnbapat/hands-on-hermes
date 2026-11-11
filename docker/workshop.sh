@@ -181,7 +181,7 @@ ensure_running() {
 # The dashboard listens on 9119 inside; the port on this machine may differ (HERMES_WS_WEB_PORT).
 web_published() { docker port "$CONTAINER" 9119/tcp >/dev/null 2>&1; }
 web_url() { printf 'http://%s' "$(docker port "$CONTAINER" 9119/tcp 2>/dev/null | head -n 1)"; }
-DASHBOARD_CMD="hermes dashboard --host 0.0.0.0 --skip-build --no-open"
+DASHBOARD_CMD="cd ~/hermes-workshop-lab && hermes dashboard --host 0.0.0.0 --skip-build --no-open"
 
 banner() {
   cat <<EOF

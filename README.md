@@ -99,11 +99,15 @@ and tell you to open the container.
 
 Hermes also has a web dashboard: a chat, plus pages for settings, API keys and
 sessions. It works when the container was started with `--web`, as in the
-steps above. Inside the container:
+steps above. Set up your key and model first (see the quick reference), then,
+inside the container:
 
 ```bash
-hermes dashboard --host 0.0.0.0 --skip-build --no-open
+cd ~/hermes-workshop-lab && hermes dashboard --host 0.0.0.0 --skip-build --no-open
 ```
+
+Start it in the lab, as with the terminal: its chat works in the folder the
+dashboard starts in, and the lab's `AGENTS.md` applies only there.
 
 Then open <http://127.0.0.1:9119> on your machine. The first time, Hermes asks
 you to set up a login: choose "Username & password", with a password you don't
